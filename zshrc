@@ -1,3 +1,6 @@
+
+alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+
 export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -128,17 +131,14 @@ export PATH=~/.local/bin:$GOPATH/bin:$GOROOT/bin:$PATH
 alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/ardikabs/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ardikabs/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ardikabs/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/ardikabs/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ardikabs/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ardikabs/google-cloud-sdk/completion.zsh.inc'; fi
 
 ## ZSH Auto Suggestion {FISH like syntax} ##
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^ ' autosuggest-accept
-
-## Back to Normal, Safety can be fun
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
-
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
