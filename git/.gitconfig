@@ -1,0 +1,11 @@
+[user]
+	email = me@ardikabs.id
+	name = Ardika Bagus S.
+[alias]
+	st = status --short --branch
+	ci = commit -v
+  ca = commit -v --amend
+  cane = commit -v --amend --no-edit
+  co = checkout
+  br = branch
+  last = log -1 HEAD
