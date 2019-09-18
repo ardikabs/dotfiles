@@ -1,32 +1,26 @@
-
-alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-
 export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ardikabs/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="agnoster"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext ram disk_usage status)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon virtualenv dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext status)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=' $ '
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
-#POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%K{black}%F{white} `date +%T` \uf017 %f%k%F{white}%f $ "
 
-#POWERLEVEL9K_VCS_GIT_ICON='\uf09b'
 POWERLEVEL9K_OS_ICON_BACKGROUND="white"
 POWERLEVEL9K_OS_ICON_FOREGROUND="black"
 POWERLEVEL9K_DIR_HOME_BACKGROUND="transparent"
@@ -68,7 +62,7 @@ POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="green"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -94,10 +88,20 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+	git
+	sudo
+	kubectl
+	virtualenv
+	common-aliases
+	zsh-completions
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.fonts/*.sh
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -123,22 +127,49 @@ source ~/.fonts/*.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+# -------------------------------------------
+# Golang
+# -------------------------------------------
+
 export GO111MODULE=on
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=~/.local/bin:$GOPATH/bin:$GOROOT/bin:$PATH
 
-alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
+# -------------------------------------------
+# ZSH Additional
+# ZSH Auto Suggestion {FISH like syntax} ##
+# -------------------------------------------
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ardikabs/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ardikabs/google-cloud-sdk/completion.zsh.inc'; fi
-
-## ZSH Auto Suggestion {FISH like syntax} ##
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
+
+# -------------------------------------------
+# Google Cloud
+# -------------------------------------------
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+# -------------------------------------------
+# Custom Aliases
+# -------------------------------------------
+
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+function syseng(){
+	ssh -l syseng $1
+}
+
+function cloudeng(){
+	ssh -l cloudeng $1
+}
+
+alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
+alias tnew="tmux new-session -t"
