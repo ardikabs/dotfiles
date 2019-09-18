@@ -150,11 +150,26 @@ bindkey '^ ' autosuggest-accept
 # Google Cloud
 # -------------------------------------------
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then
+	source $HOME/google-cloud-sdk/path.zsh.inc
+fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
+	source $HOME/google-cloud-sdk/completion.zsh.inc
+fi
 
+# -------------------------------------------
+# Custom Script
+# -------------------------------------------
+
+if [ ! -d $HOME/.fzf ]; then
+	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+	$HOME/.fzf/install --all --no-zsh
+	source ~/.fzf.zsh
+elif [ -d $HOME/.fzf ]; then
+	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
 
 # -------------------------------------------
 # Custom Aliases
@@ -173,3 +188,5 @@ function cloudeng(){
 alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
 alias tnew="tmux new-session -t"
+
+
