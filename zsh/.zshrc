@@ -11,31 +11,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon virtualenv dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext status)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=' $ '
-
-POWERLEVEL9K_OS_ICON_BACKGROUND="white"
-POWERLEVEL9K_OS_ICON_FOREGROUND="black"
-POWERLEVEL9K_DIR_HOME_BACKGROUND="transparent"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="green"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="transparent"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="yellow"
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND="transparent"
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="transparent"
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="transparent"
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND="040"
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="red"
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="yellow"
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="transparent"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="green"
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -189,4 +164,5 @@ alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
 alias tnew="tmux new-session -t"
 
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
