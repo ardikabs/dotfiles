@@ -1,0 +1,75 @@
+#!/bin/sh
+
+# -------------------------------------------
+# ZSH Plugins
+# 1. zsh-autosuggestions
+# 2. zsh-syntax-highlighting
+# 3. zsh-autocompletions
+# -------------------------------------------
+
+if [ ! -d $ZSH/custom/plugins/zsh-autosuggestions ]; then
+	git clone -q --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	git clone -q --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	git clone -q --depth=1 https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+fi
+
+# -------------------------------------------
+# ZSH Themes + Fonts
+# 1. Powerlevel10k
+# 2. Nerd Font
+# -------------------------------------------
+
+# Install Powerlevel10k theme
+if [ ! -d $ZSH/custom/themes/powerlevel10k ];then
+	git clone -q --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
+fi
+
+# Font directory
+FONT_DIR=$HOME/.local/share/fonts
+
+# Install Fonts
+if [ ! -d $FONT_DIR ]; then
+	mkdir -p $FONT_DIR
+	curl -sfLo $FONT_DIR/"Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+	curl -sfLo $FONT_DIR/"MesloLGS NF Regular.ttf" https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf
+	curl -sfLo $FONT_DIR/"MesloLGS NF Bold.ttf" https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Bold.ttf
+	curl -sfLo $FONT_DIR/"MesloLGS NF Italic.ttf" https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Italic.ttf
+	curl -sfLo $FONT_DIR/"MesloLGS NF Bold Italic.ttf" https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Bold%20Italic.ttf
+
+	fc-cache -vf $FONT_DIR
+fi
+
+# -------------------------------------------
+# Install Golang
+# -------------------------------------------
+if [ ! -d $HOME/go ]; then
+  mkdir -p $HOME/go
+fi
+
+if [ ! -d /usr/local/go ]; then
+  sudo curl -fs https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz | sudo tar zxf - -C /usr/local
+fi
+
+# -------------------------------------------
+# Install Kubectl
+# -------------------------------------------
+if ! which kubectl > /dev/null 2>&1; then
+	sudo curl -sLo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+	sudo chmod +x /usr/local/bin/kubectl
+fi
+
+# -------------------------------------------
+# Install Google cloud sdk
+# -------------------------------------------
+if [ ! -d /usr/local/google-cloud-sdk ];then
+  sudo curl -fs https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-274.0.0-linux-x86_64.tar.gz | sudo tar zxf - -C /usr/local/
+	sudo zsh /usr/local/google-cloud-sdk/install.sh -q
+fi
+
+# -------------------------------------------
+# Install fzh (fuzzy search plugin)
+# -------------------------------------------
+if [ ! -d $HOME/.fzf ]; then
+	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+	$HOME/.fzf/install --all --no-fish
+fi
