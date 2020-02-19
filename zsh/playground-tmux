@@ -1,0 +1,9 @@
+#!/bin/zsh
+set +x
+SESSION_NAME=playground
+
+if tmux has -t $SESSION_NAME > /dev/null 2&>1; then
+  tmux a -t $SESSION_NAME
+else
+  tmux new -s $SESSION_NAME
+fi
