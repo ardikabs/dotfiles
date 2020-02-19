@@ -10,31 +10,48 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 Plug 'prettier/vim-prettier', {'do': 'npm install'}
+Plug 'ayu-theme/ayu-vim'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
 syntax on
 filetype plugin indent on
-filetype on
 
-set nocompatible
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
+
+" vim
+color desert
+set autochdir                   " automatically change window's cwd to file's dir
+set autoindent                  " align the new line indent with the previous line
 set backspace=indent,eol,start
-set encoding=utf-8
-set mouse=a
 set cursorline
+set encoding=utf-8
+set expandtab                   " insert spaces when hitting TABs
+set fillchars+=stl:\ ,stlnc:\
+set laststatus=2
+set relativenumber
+set shiftround                  " round indent to multiple of 'shiftwidth'
+set shiftwidth=2                " operation >> indents 2 columns; << unindents 2 columns
+set showmatch
+set smartindent
+set smarttab
+set softtabstop=2               " insert/delete 2 spaces when hitting a TAB/BACKSPACE
+set t_Co=256
+set tabstop=2                   " a hard TAB displays as 2 columns
+set termencoding=utf-8
+set textwidth=79                " lines longer than 119 columns will be broken
+set nocompatible
+set mouse=a
 set autoread
 set ignorecase
 set re=1
 set paste
 set modelines=0
-set number
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
 
 set clipboard=unnamed " yank to clipboard
-
 set autoindent
 set smartindent
 
