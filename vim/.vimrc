@@ -15,45 +15,64 @@ Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
+" General
 syntax on
 filetype plugin indent on
-
-set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
-
-" vim
-color desert
-set autochdir                   " automatically change window's cwd to file's dir
-set autoindent                  " align the new line indent with the previous line
-set backspace=indent,eol,start
-set cursorline
 set encoding=utf-8
-set expandtab                   " insert spaces when hitting TABs
-set fillchars+=stl:\ ,stlnc:\
-set laststatus=2
+set backspace=indent,eol,start
 set relativenumber
-set shiftround                  " round indent to multiple of 'shiftwidth'
-set shiftwidth=2                " operation >> indents 2 columns; << unindents 2 columns
+
+" History
+set history=50
+
+" Display
+set ls=2
+set showmode
+set showcmd
+set modeline
+set ruler
+set title
+set nu
+
+" Line wrapping
+set nowrap
+set linebreak
+set showbreak=▹
+
+" Searching
+set ignorecase
+set smartcase
+set gdefault
+set hlsearch
 set showmatch
+
+" Indentation
+set shiftwidth=4                " operation >> indents 2 columns; << unindents 2 columns
+set tabstop=4                   " a hard TAB displays as 2 columns
+set softtabstop=4               " insert/delete 2 spaces when hitting a TAB/BACKSPACE
+set shiftround
+set expandtab                   " insert spaces when hitting TABs
 set smartindent
 set smarttab
-set softtabstop=2               " insert/delete 2 spaces when hitting a TAB/BACKSPACE
-set t_Co=256
-set tabstop=2                   " a hard TAB displays as 2 columns
-set termencoding=utf-8
-set textwidth=79                " lines longer than 119 columns will be broken
-set nocompatible
-set mouse=a
-set autoread
-set ignorecase
-set re=1
-set paste
-set modelines=0
+
+" Disable mouse
+set mouse=
+
+" vim
+set autochdir                   " automatically change window's cwd to file's dir
+set autoindent                  " auto indent
+
+" Colorscheme
+if &t_Co == 256
+    try
+        color xoria256
+    catch /^Vim\%((\a\+)\)\=:E185/
+        " Oh well
+    endtry
+endif
 
 set clipboard=unnamed " yank to clipboard
-set autoindent
-set smartindent
+set pastetoggle=<F2>
 
 " Remap section "
 map <C-n> :NERDTreeToggle<CR>
@@ -70,5 +89,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Optional
+colorscheme ayu
+color desert
+let ayucolor="mirage"
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
