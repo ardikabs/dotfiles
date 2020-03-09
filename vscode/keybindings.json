@@ -5,9 +5,9 @@
         "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"
     },
     {
-        "key": "ctrl+shift+tab",
-        "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
-        "when": "inEditorsPicker && inQuickOpen"
+    "key": "ctrl+shift+tab",
+    "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
     },
     {
         "key": "alt+[",

@@ -1,13 +1,15 @@
 {
   "files.exclude": {
-      "**/.git": true,
-      "**/.svn": true,
-      "**/.hg": true,
-      "**/CVS": true,
-      "**/.DS_Store": true,
-      "**/.pyc": true,
-      "**/__pycache__": true,
-      "**/.terraform":true
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.pyc": true,
+    "**/__pycache__": true,
+    "**/.terraform":true,
+    "**/node_modules": true,
+    "**/.cargo-ok": true
   },
 
   "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
@@ -30,52 +32,66 @@
   "editor.fontLigatures": true,
   "editor.detectIndentation": true,
   "editor.insertSpaces": true,
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
 
   "editor.smoothScrolling": true,
   "editor.minimap.renderCharacters": false,
   "editor.minimap.maxColumn": 200,
   "editor.minimap.showSlider": "always",
   "editor.renderWhitespace": "all",
-  "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
+
+  "[yaml]": {
+    "editor.tabSize": 2,
+    "files.insertFinalNewline": true
+  },
+  "[json]": {
+    "editor.tabSize": 2,
+    "files.insertFinalNewline": true
+  },
+  "[makefile]": {
+    "files.insertFinalNewline": true,
+    "editor.insertSpaces": false
+  },
+
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#C69650"
+        }
+      }
+    ]
+  },
 
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
-  "editor.tokenColorCustomizations": {
-      "textMateRules": [
-        {
-          "scope": "comment",
-          "settings": {
-            "fontStyle": "italic",
-            "foreground": "#C69650",
-          }
-        }
-      ]
-    },
-    "workbench.colorCustomizations": {
-      "activityBarBadge.background": "#FFA000",
-      "list.activeSelectionForeground": "#FFA000",
-      "list.inactiveSelectionForeground": "#FFA000",
-      "list.highlightForeground": "#FFA000",
-      "scrollbarSlider.activeBackground": "#FFA00050",
-      "editorSuggestWidget.highlightForeground": "#FFA000",
-      "textLink.foreground": "#FFA000",
-      "progressBar.background": "#FFA000",
-      "pickerGroup.foreground": "#FFA000",
-      "tab.activeBorder": "#FFA000",
-      "notificationLink.foreground": "#FFA000",
-      "editorWidget.resizeBorder": "#FFA000",
-      "editorWidget.border": "#FFA000",
-      "settings.modifiedItemIndicator": "#FFA000",
-      "settings.headerForeground": "#FFA000",
-      "panelTitle.activeBorder": "#FFA000",
-      "breadcrumb.activeSelectionForeground": "#FFA000",
-      "menu.selectionForeground": "#FFA000",
-      "menubar.selectionForeground": "#FFA000",
-      "editor.findMatchBorder": "#FFA000",
-      "selection.background": "#FFA00040"
-    },
-    "materialTheme.accent": "Yellow",
 
+  "workbench.colorCustomizations": {
+    "activityBarBadge.background": "#FFA000",
+    "list.activeSelectionForeground": "#FFA000",
+    "list.inactiveSelectionForeground": "#FFA000",
+    "list.highlightForeground": "#FFA000",
+    "scrollbarSlider.activeBackground": "#FFA00050",
+    "editorSuggestWidget.highlightForeground": "#FFA000",
+    "textLink.foreground": "#FFA000",
+    "progressBar.background": "#FFA000",
+    "pickerGroup.foreground": "#FFA000",
+    "tab.activeBorder": "#FFA000",
+    "notificationLink.foreground": "#FFA000",
+    "editorWidget.resizeBorder": "#FFA000",
+    "editorWidget.border": "#FFA000",
+    "settings.modifiedItemIndicator": "#FFA000",
+    "settings.headerForeground": "#FFA000",
+    "panelTitle.activeBorder": "#FFA000",
+    "breadcrumb.activeSelectionForeground": "#FFA000",
+    "menu.selectionForeground": "#FFA000",
+    "menubar.selectionForeground": "#FFA000",
+    "editor.findMatchBorder": "#FFA000",
+    "selection.background": "#FFA00040"
+  },
+  "materialTheme.accent": "Yellow",
+  "javascript.updateImportsOnFileMove.enabled": "always"
 }

@@ -7,7 +7,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Plugin section "
+
+" -----------------------------------------------------
+" Plugin Section
+" -----------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -18,6 +21,12 @@ Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
+" -----------------------------------------------------
+" Plugin Configuration
+" -----------------------------------------------------
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
 " General
 syntax on
 filetype plugin indent on
@@ -25,19 +34,21 @@ set encoding=utf-8
 set backspace=indent,eol,start
 set nobackup             " prefer not to write backup
 set noswapfile           " prefer not to write swapfile
+set nowritebackup
 
 " History
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 
 " Display
+set ttyfast
 set title
 set ls=2
 set showmode
 set showcmd
 set modeline
 set ruler
-set nu
+set number
 set relativenumber
 
 " Line wrapping
@@ -58,27 +69,17 @@ set tabstop=4                   " a tab is 4 spaces
 set softtabstop=4               " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
 set expandtab                   " insert spaces when hitting TABs
-set smartindent
-set smarttab
+set autoindent                  " auto indent
+set smartindent                 " smart indent
+set smarttab                    " smart tab
 
 " Disable mouse
 set mouse=a
 
 " vim
 set autochdir                   " automatically change window's cwd to file's dir
-set autoindent                  " auto indent
-
-" Colorscheme
-if &t_Co == 256
-    try
-        color xoria256
-    catch /^Vim\%((\a\+)\)\=:E185/
-        " Oh well
-    endtry
-endif
-
-set clipboard=unnamed " yank to clipboard
-set pastetoggle=<F2>
+set clipboard=unnamed           " yank to clipboard
+set pastetoggle=<F2>            " integrate F2 as paste toggle
 
 " Remap section
 map <C-n> :NERDTreeToggle<CR>
@@ -97,11 +98,28 @@ nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Efficient shortcut mappings
-nnoremap ; :
+inoremap jk <Esc>
 
-" Optional
-colorscheme ayu
+" Colorscheme
+set t_Co=256
 color desert
 let ayucolor="mirage"
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+" set colorcolumn=80,100
+" highlight ColorColumn ctermbg=238 guibg=#23272
+
+" Different tab/space stops
+autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType make setlocal noexpandtab
+
+" -----------------------------------------------------
+" Files to exclude
+" -----------------------------------------------------
+" Python
+set wildignore+=*.pyc,*.pyo,*/__pycache__/*
+" Erlang
+set wildignore+=*.beam
+" Temp files
+set wildignore+=*.swp,~*
+" Archives
+set wildignore+=*.zip,*.tar
