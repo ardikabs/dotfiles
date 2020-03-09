@@ -1,32 +1,64 @@
 " This must be first, because it changes other options as side effect
 set nocompatible
-
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
+filetype off
 
 " -----------------------------------------------------
 " Plugin Section
 " -----------------------------------------------------
-call plug#begin('~/.vim/plugged')
+" Set up Vundle on first install - Vundle, in turn, installs all other plugins
+set exrc
+set secure
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fugitive'
-Plug 'prettier/vim-prettier', {'do': 'npm install'}
-Plug 'ayu-theme/ayu-vim'
-Plug 'vim-airline/vim-airline'
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-call plug#end()
+" List bundles here
+
+Plugin 'gmarik/vundle'
+Plugin 'preservim/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-sensible'
+Plugin 'ayu-theme/ayu-vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'Yggdroot/indentLine'
+
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
+" end of vundle setup
 
 " -----------------------------------------------------
 " Plugin Configuration
 " -----------------------------------------------------
+
+" NERDTree {{
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+" }}
 
+" IndentLine {{
+let g:indentLine_char_list = ['¦', '┆', '┊']
+let g:indentLine_first_char = '|'
+let g:indentLine_bgcolor_term = 233
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+" }}
+
+" -----------------------------------------------------
+" VIM Configuration
+" -----------------------------------------------------
 " General
 syntax on
 filetype plugin indent on
@@ -34,7 +66,10 @@ set encoding=utf-8
 set backspace=indent,eol,start
 set nobackup             " prefer not to write backup
 set noswapfile           " prefer not to write swapfile
-set nowritebackup
+set nowritebackup        " prefer not to write backup
+set ffs=unix,dos,mac     " This is what files look like
+set path=$PWD/**         " Update find path to search subdirectories
+set mouse=a              " Disable mouse
 
 " History
 set history=1000         " remember more commands and search history
@@ -73,13 +108,12 @@ set autoindent                  " auto indent
 set smartindent                 " smart indent
 set smarttab                    " smart tab
 
-" Disable mouse
-set mouse=a
-
-" vim
+" Optional
 set autochdir                   " automatically change window's cwd to file's dir
 set clipboard=unnamed           " yank to clipboard
 set pastetoggle=<F2>            " integrate F2 as paste toggle
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " Remap section
 map <C-n> :NERDTreeToggle<CR>
@@ -96,14 +130,21 @@ inoremap <C-l> <Right>
 " Quickly edit/reload the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader>][ :nohl<CR>
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " Efficient shortcut mappings
 inoremap jk <Esc>
 
 " Colorscheme
 set t_Co=256
-color desert
-let ayucolor="mirage"
+set termguicolors     " enable true colors support
+let ayucolor="mirage"   " for dark version of theme
+colorscheme ayu
 " set colorcolumn=80,100
 " highlight ColorColumn ctermbg=238 guibg=#23272
 
