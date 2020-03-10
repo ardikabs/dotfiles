@@ -28,10 +28,12 @@ Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-git'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'ryanoasis/vim-devicons'
 
 if iCanHazVundle == 0
@@ -45,18 +47,60 @@ endif
 " Plugin Configuration
 " -----------------------------------------------------
 
-" NERDTree {{
+" Plugin:NERDTree {{
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 " }}
 
-" IndentLine {{
+" Plugin:IndentLine {{
 " let g:indentLine_char_list = ['¦', '┆', '┊']
 let g:indentLine_first_char = '|'
 let g:indentLine_bgcolor_term = 233
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 " }}
+
+" Plugin:Fzf {{
+" This is the default extra key bindings
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_buffers_jump = 1
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" File path completion in Insert mode using fzf
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
+
+" Use preview when FzfFiles runs in fullscreen
+command! -nargs=? -bang -complete=dir FzfFiles
+      \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
+
+" Key binding
+nnoremap <silent> <leader>o :FzfFiles<CR>
+nnoremap <silent> <leader>O :FzfFiles!<CR>
+nnoremap <silent> <leader>l :FzfBuffers<CR>
+nnoremap <silent> <leader>b :FzfBLines<CR>
+nnoremap <silent> <leader>` :FzfMarks<CR>
+nnoremap <silent> <leader>p :FzfCommands<CR>
+nnoremap <silent> <leader>t :FzfFiletypes<CR>
+cnoremap <silent> <C-_> <C-u>:FzfCommands<CR>
+
+" }}
+
 
 " -----------------------------------------------------
 " VIM Configuration
@@ -68,6 +112,7 @@ set encoding=utf-8
 set backspace=indent,eol,start
 set nobackup             " prefer not to write backup
 set noswapfile           " prefer not to write swapfile
+
 set nowritebackup        " prefer not to write backup
 set ffs=unix,dos,mac     " This is what files look like
 set path=$PWD/**         " Update find path to search subdirectories
@@ -129,10 +174,12 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
+nnoremap <silent> <leader>= :hid<CR>
+nnoremap <silent> <leader>][ :nohl<CR>
+
 " Quickly edit/reload the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
-nnoremap <silent> <leader>][ :nohl<CR>
 
 " Deactivate arrow-key movement
 map <up> <nop>
