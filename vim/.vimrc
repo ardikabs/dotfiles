@@ -31,6 +31,8 @@ Plugin 'tpope/vim-sensible'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Yggdroot/indentLine'
+Plugin 'junegunn/fzf'
+Plugin 'ryanoasis/vim-devicons'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -49,7 +51,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 " }}
 
 " IndentLine {{
-let g:indentLine_char_list = ['¦', '┆', '┊']
+" let g:indentLine_char_list = ['¦', '┆', '┊']
 let g:indentLine_first_char = '|'
 let g:indentLine_bgcolor_term = 233
 let g:indentLine_showFirstIndentLevel = 1
@@ -110,17 +112,17 @@ set smarttab                    " smart tab
 
 " Optional
 set autochdir                   " automatically change window's cwd to file's dir
-set clipboard=unnamed           " yank to clipboard
+set clipboard=unnamedplus       " yank to clipboard
 set pastetoggle=<F2>            " integrate F2 as paste toggle
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " Remap section
 map <C-n> :NERDTreeToggle<CR>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
 
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
@@ -132,6 +134,7 @@ nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <silent> <leader>][ :nohl<CR>
 
+" Deactivate arrow-key movement
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>

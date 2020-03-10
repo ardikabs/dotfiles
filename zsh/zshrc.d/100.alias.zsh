@@ -11,3 +11,4 @@ alias t=tmux
 alias ta="t a -t"
 alias tn="t new -t"
 alias tls="t ls"
+alias tks="t kill-session -t"
