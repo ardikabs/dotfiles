@@ -1,47 +1,34 @@
 " This must be first, because it changes other options as side effect
 set nocompatible
-filetype off
 
 " -----------------------------------------------------
 " Plugin Section
 " -----------------------------------------------------
-" Set up Vundle on first install - Vundle, in turn, installs all other plugins
-set exrc
-set secure
+if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
 
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let iCanHazVundle=0
-endif
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
 
 " List bundles here
 
-Plugin 'gmarik/vundle'
-Plugin 'preservim/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-git'
-Plugin 'ayu-theme/ayu-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'Yggdroot/indentLine'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'ryanoasis/vim-devicons'
+Plug 'gmarik/vundle'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-git'
+Plug 'ayu-theme/ayu-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'Yggdroot/indentLine'
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'ryanoasis/vim-devicons'
 
-if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :BundleInstall
-endif
-" end of vundle setup
+call plug#end()
+
 
 " -----------------------------------------------------
 " Plugin Configuration
@@ -192,7 +179,7 @@ inoremap jk <Esc>
 
 " Colorscheme
 set t_Co=256
-set termguicolors     " enable true colors support
+set termguicolors       " enable true colors support
 let ayucolor="mirage"   " for dark version of theme
 colorscheme ayu
 " set colorcolumn=80,100
@@ -201,6 +188,7 @@ colorscheme ayu
 " Different tab/space stops
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype py setlocal noexpandtab
 autocmd FileType make setlocal noexpandtab
 
 " -----------------------------------------------------
