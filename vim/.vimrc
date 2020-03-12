@@ -14,7 +14,6 @@ call plug#begin('~/.vim/plugged')
 
 " List bundles here
 
-Plug 'gmarik/vundle'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
