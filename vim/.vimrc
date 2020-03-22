@@ -168,10 +168,10 @@ nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Deactivate arrow-key movement
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+map <up> <c-y>
+map <down> <c-e>
+" map <left> <nop>
+" map <right> <nop>
 
 " Efficient shortcut mappings
 inoremap jk <Esc>
