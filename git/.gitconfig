@@ -1,6 +1,5 @@
 [user]
-	email = me@ardikabs.id
-	name = Ardika Bagus S.
+	name = Ardika Bagus
 [alias]
 	st = status --short --branch
 	ci = commit -v
