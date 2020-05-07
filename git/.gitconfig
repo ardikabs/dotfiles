@@ -3,6 +3,7 @@
 [alias]
 	st = status --short --branch
 	ci = commit -v
+	cim = commit -v -m
   ca = commit -v --amend
   cane = commit -v --amend --no-edit
   co = checkout
