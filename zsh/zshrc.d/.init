@@ -38,7 +38,7 @@ download_fonts(){
 if [ `uname -s` = "Linux" ]; then
 	FONT_DIR=$HOME/.local/share/fonts
 	# Install Fonts
-	if [ ! -d $FONT_DIR ]; then
+	if [ ! -d $FONT_DIR && $(which fc-cache > /dev/null) ]; then
 		mkdir -p $FONT_DIR
 		download_fonts
 		fc-cache -vf $FONT_DIR
