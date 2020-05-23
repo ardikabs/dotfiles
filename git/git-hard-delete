@@ -1,0 +1,9 @@
+#!/bin/bash
+
+branch=$1
+
+if [ ! -z "$1" ]
+then
+    git branch -D $branch
+    git push -d origin $branch
+fi
