@@ -1,0 +1,40 @@
+Host *
+    ForwardAgent yes
+    AddKeysToAgent yes
+    Compression yes
+    Protocol 2
+    ServerAliveInterval 60s
+    LogLevel INFO
+
+Host gitlab.com github.com source.golabs.io
+    PreferredAuthentications publickey
+
+Host 10.*
+    PreferredAuthentications publickey
+    User ec2-user
+    Port 22
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+
+Host 10.10.*
+    PreferredAuthentications publickey
+    User ec2-user
+    Port 22
+    IdentitiesOnly yes
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+
+Host 10.10.10.*
+    User root
+    Port 4222
+    IdentityFile ~/.ssh/id_rsa
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+
+Host jumper-sample
+    HostName 172.18.1.10
+    PreferredAuthentications publickey
+    User root
+    Port 4222
+    ProxyCommand ssh -q -W %h:%p kadabra@kadabra-jumper
+    StrictHostKeyChecking no

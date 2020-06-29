@@ -1,11 +1,26 @@
 [user]
-	name = Ardika Bagus
+  name = Ardika Bagus
+  signingkey = 14614438DAE713EB
+
 [alias]
-	st = status --short --branch
-	ci = commit -v
-	cim = commit -v -m
+  st = status --short --branch
+  ci = commit -v
+  cim = commit -v -m
   ca = commit -v --amend
   cane = commit -v --amend --no-edit
   co = checkout
   br = branch
   last = log -1 HEAD
+
+[gpg]
+  program = gpg
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+  insteadOf = https://gitlab.com/
+
+# Optional
+[commit]
+  gpgsign = true

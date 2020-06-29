@@ -16,7 +16,7 @@ plugins=(
 	sudo
 	kubectl
 	virtualenv
-	ssh-agent
+	gpg-agent
 	zsh-completions
 	zsh-autosuggestions
 	zsh-syntax-highlighting
