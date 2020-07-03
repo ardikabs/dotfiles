@@ -9,19 +9,20 @@ Host *
     ServerAliveInterval 60s
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
+    PreferredAuthentications publickey
 
 Host gitlab.com github.com source.golabs.io
-    PreferredAuthentications publickey
+    StrictHostKeyChecking yes
+    UserKnownHostsFile ~/.ssh/known_hosts
 
 Host 10.*
     User ec2-user
     Port 22
-    PreferredAuthentications publickey
+    PreferredAuthentications password
 
 Host 10.10.*
     User ec2-user
     Port 22
-    PreferredAuthentications publickey
 
 Host 10.10.10.*
     User root
@@ -31,7 +32,16 @@ Host 10.10.10.*
 
 Host jumper-sample
     HostName 172.18.1.10
+    User jumper-user
+    Port 4222
+
+Host protected-host
+    HostName 172.18.2.10
     User root
     Port 4222
-    ProxyCommand ssh -q -W %h:%p kadabra@kadabra-jumper
-    PreferredAuthentications publickey
+    ProxyCommand ssh -q -W %h:%p jumper-sample
+
+Host 172.18.2.*
+    User root
+    Port 4222
+    ProxyCommand ssh -q -W %h:%p jumper-sample
