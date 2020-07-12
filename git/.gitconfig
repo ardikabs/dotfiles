@@ -1,6 +1,8 @@
-[user]
-  name = Ardika Bagus
-  signingkey = 14614438DAE713EB
+[include]
+  path = ~/.config/git/configs/config.main
+
+[includeIf "gitdir:/path/to/git/project/**.git"]
+  path = ~/.config/git/configs/config.projectName
 
 [alias]
   st = status --short --branch
