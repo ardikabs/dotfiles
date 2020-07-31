@@ -1,3 +1,7 @@
+
+# If you are replacing ssh-agent with gpg-agent
+# You must be used the follow ssh config
+# So that the terminalTTY aware of the gpg prompt
 Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
     ForwardAgent yes
     AddKeysToAgent yes
