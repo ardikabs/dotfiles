@@ -12,10 +12,16 @@
   cane = commit -v --amend --no-edit
   co = checkout
   br = branch
+  lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
+  tags = tag -l
   last = log -1 HEAD
 
 [gpg]
   program = gpg
+
+# Optional
+[commit]
+  gpgsign = true
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
@@ -23,6 +29,9 @@
 [url "git@gitlab.com:"]
   insteadOf = https://gitlab.com/
 
-# Optional
-[commit]
-  gpgsign = true
+# For gitlab-ci setup better yet use the following setup
+# [url "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/"]
+#   insteadOf = ssh://git@gitlab.com/
+#   insteadOf = git@gitlab.com:
+#   insteadOf = https://gitlab.com/
+#   insteadOf = git://gitlab.com/
