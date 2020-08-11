@@ -4,6 +4,9 @@
 [includeIf "gitdir:/path/to/git/project/**.git"]
   path = ~/.config/git/configs/config.projectName
 
+[includeIf "gitdir:**/otherProject/**/.git"]
+  path = ~/.config/git/configs/config.otherProjectName
+
 [alias]
   st = status --short --branch
   ci = commit -v
@@ -31,7 +34,7 @@
 
 # For gitlab-ci setup better yet use the following setup
 # [url "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/"]
-#   insteadOf = ssh://git@gitlab.com/
-#   insteadOf = git@gitlab.com:
 #   insteadOf = https://gitlab.com/
 #   insteadOf = git://gitlab.com/
+#   insteadOf = ssh://git@gitlab.com/
+#   insteadOf = git@gitlab.com:
