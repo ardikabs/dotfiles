@@ -18,6 +18,7 @@
   lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
   tags = tag -l
   last = log -1 HEAD
+  logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s'
 
 [gpg]
   program = gpg
