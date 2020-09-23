@@ -20,6 +20,9 @@
   last = log -1 HEAD
   logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s'
 
+[core]
+  hooksPath = .githooks
+
 [gpg]
   program = gpg
 
