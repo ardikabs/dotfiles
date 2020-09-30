@@ -8,17 +8,23 @@
   path = ~/.config/git/configs/config.otherProjectName
 
 [alias]
+  alias = config --get-regexp alias
   st = status --short --branch
+  ap = add . -p
   ci = commit -v
   cim = commit -v -m
   ca = commit -v --amend
   cane = commit -v --amend --no-edit
   co = checkout
-  br = branch
-  lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
+  cob = checkout -B
+  b = branch
+  ba = branch -a
+  br = branch -r
+  bd = branch -D
   tags = tag -l
+  lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
   last = log -1 HEAD
-  logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s'
+  logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
 
 [core]
   hooksPath = .githooks
@@ -29,6 +35,7 @@
 # Optional
 [commit]
   gpgsign = true
+  template = ~/.config/git/.gittemplates/commit
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
