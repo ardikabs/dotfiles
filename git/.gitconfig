@@ -27,7 +27,11 @@
   logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
 
 [core]
+  compression = 5
+  editor = vim
+  excludesfile = ~/.gitignore
   hooksPath = .githooks
+  trustctime = false
 
 [gpg]
   program = gpg
