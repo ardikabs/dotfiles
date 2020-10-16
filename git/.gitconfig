@@ -33,6 +33,12 @@
   hooksPath = .githooks
   trustctime = false
 
+[push]
+  default = simple
+
+[pull]
+  rebase = true
+
 [gpg]
   program = gpg
 
