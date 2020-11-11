@@ -25,6 +25,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'voldikss/vim-floaterm'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
