@@ -1,11 +1,8 @@
 [include]
-  path = ~/.config/git/configs/config.main
+  path = ~/.local/git/configs/config.main
 
 [includeIf "gitdir:/path/to/git/project/**.git"]
-  path = ~/.config/git/configs/config.projectName
-
-[includeIf "gitdir:**/otherProject/**/.git"]
-  path = ~/.config/git/configs/config.otherProjectName
+  path = ~/.local/git/configs/config.projectName
 
 [alias]
   alias = config --get-regexp alias
@@ -45,7 +42,7 @@
 # Optional
 [commit]
   gpgsign = true
-  template = ~/.config/git/.gittemplates/commit
+  template = ~/.local/git/.gittemplates/commit
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
