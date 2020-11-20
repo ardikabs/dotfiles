@@ -30,3 +30,11 @@ source $ZSH/oh-my-zsh.sh
 for FN in $HOME/.local/zshrc.d/*.zsh; do
 	source $FN
 done
+
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)
