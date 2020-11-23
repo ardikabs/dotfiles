@@ -36,5 +36,7 @@ export PATH="$PATH:/usr/local/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
+
+eval "$(direnv hook zsh)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)
