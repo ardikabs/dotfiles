@@ -2,7 +2,6 @@ export TERM="xterm-256color"
 export ZSH="$HOME/.oh-my-zsh"
 export GPG_TTY=$(tty)
 
-source ~/.local/zshrc.d/.init
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
