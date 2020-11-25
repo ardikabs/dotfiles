@@ -29,3 +29,7 @@ Host 172.18.2.*
     Port 4222
     ProxyCommand ssh -q -W %h:%p jumper-sample
     #ProxyJump jumper-sample
+
+Host playground.ardikabs.com
+  HostName 103.136.18.148
+  User ardika
