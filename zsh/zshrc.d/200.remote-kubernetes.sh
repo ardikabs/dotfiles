@@ -1,16 +1,19 @@
-#!/usr/bin/sh
+#!/usr/bin/env bash
 # -------------------------------------------
 # remote kubernetes
 # -------------------------------------------
 
 remote.kubernetes() {
+  set -e
+
   readonly tempdir="/tmp/remote-kubernetes"
   mkdir -p "${tempdir}"
 
   if [ -f "${tempdir}/kubernetes-master.pid" ]; then
-    kill -15 "$(cat "${tempdir}/kubernetes-master.pid")"
+    kill -15 "$(cat "${tempdir}/kubernetes-master.pid")" >/dev/null 2>&1
   fi
 
-  ssh -fNT -L 6443:172.18.0.10:6443 playground.k8s.ardikabs.com
-  echo $(pgrep -f 'ssh.*playground.k8s.ardikabs.com') > "${tempdir}/kubernetes-master.pid"
+  ssh_cmd="ssh -fNT -L 6443:172.18.0.10:6443 playground.k8s.ardikabs.com"
+  eval "${ssh_cmd}"
+  pgrep -f "${ssh_cmd}" > "${tempdir}/kubernetes-master.pid"
 }
