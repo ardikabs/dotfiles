@@ -16,7 +16,10 @@ remote.docker() {
   if eval "${ssh_cmd}"; then
     pgrep -f "${ssh_cmd}" > "${tempdir}"/remote-docker.pid
     export DOCKER_HOST="unix://${tempdir}/docker.sock"
+    return 0
   fi
+
+  return 1
 }
 
 remote.docker-aws() {
@@ -32,16 +35,47 @@ remote.docker-aws() {
   if eval "${ssh_cmd}"; then
     pgrep -f "${ssh_cmd}" > "${tempdir}"/remote-docker.pid
     export DOCKER_HOST="unix://${tempdir}/docker.sock"
+    return 0
   fi
+
+  return 1
 }
 
-if [[ -n "${DOCKER_HOST}" ]]; then
-  docker-port-forward() {
-    target_port="$(echo "$1"| cut -d: -f1)"
-    destination_port="$(echo "$1"| cut -d: -f2)"
+docker-remote-port-forward() {
+  mkdir -p /tmp/docker-remote-port-forward
 
-    [ -f "/tmp/docker-remote-port-forward.pid" ] && kill -15 "$(cat "/tmp/docker-remote-port-forward.pid")" >/dev/null 2>&1
-    ssh_cmd="ssh -fNT -L 127.0.0.1:${target_port}:127.0.0.1:${destination_port} playground.ardikabs.com"
-    eval "${ssh_cmd}" && pgrep -f "${ssh_cmd}" > /tmp/port-forward.pid
-  }
-fi
+  case $1 in
+    *:*)
+    if [[ -n "${DOCKER_HOST}" ]]; then
+      target_port="$(echo "$1"| cut -d: -f1)"
+      destination_port="$(echo "$1"| cut -d: -f2)"
+
+      if [ -f "/tmp/docker-remote-port-forward/${target_port}.pid" ]; then
+        kill -15 "$(cat "/tmp/docker-remote-port-forward/${target_port}.pid")" >/dev/null 2>&1
+      fi
+
+      ssh_cmd="ssh -fNT -L 127.0.0.1:${target_port}:127.0.0.1:${destination_port} playground.ardikabs.com"
+      if eval "${ssh_cmd}"; then
+        pgrep -f "${ssh_cmd}" > "/tmp/docker-remote-port-forward/${target_port}.pid"
+        return 0
+      fi
+    fi
+    ;;
+    close)
+      shift 1
+      target_port="$(echo "$1"| cut -d: -f1)"
+      if [ -f "/tmp/docker-remote-port-forward/${target_port}.pid" ]; then
+        kill -15 "$(cat "/tmp/docker-remote-port-forward/${target_port}.pid")" >/dev/null 2>&1
+      fi
+      return 0
+    ;;
+    closeall)
+      for pid in /tmp/docker-remote-port-forward/*.pid; do
+        kill -15 "$(cat "${pid}")"
+        rm -rf "${pid}"
+      done
+      return 0
+    ;;
+  esac
+  return 1
+}
