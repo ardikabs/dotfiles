@@ -4,8 +4,6 @@
 # -------------------------------------------
 
 remote.docker() {
-  set -e
-
   readonly tempdir="/tmp/remote-docker"
   mkdir -p "${tempdir}"
 
@@ -15,14 +13,13 @@ remote.docker() {
   fi
 
   ssh_cmd="ssh -fNT -L ${tempdir}/docker.sock:/var/run/docker.sock playground.ardikabs.com"
-  eval "${ssh_cmd}"
-  pgrep -f "${ssh_cmd}" > "${tempdir}"/remote-docker.pid
-  export DOCKER_HOST="unix://${tempdir}/docker.sock"
+  if eval "${ssh_cmd}"; then
+    pgrep -f "${ssh_cmd}" > "${tempdir}"/remote-docker.pid
+    export DOCKER_HOST="unix://${tempdir}/docker.sock"
+  fi
 }
 
 remote.docker-aws() {
-  set -e
-
   readonly tempdir="/tmp/remote-docker-aws"
   mkdir -p "${tempdir}"
 
@@ -32,7 +29,8 @@ remote.docker-aws() {
   fi
 
   ssh_cmd="ssh -fNT -L ${tempdir}/docker.sock:/var/run/docker.sock aws.playground.ardikabs.com"
-  eval "${ssh_cmd}"
-  pgrep -f "${ssh_cmd}" > "${tempdir}"/remote-docker.pid
-  export DOCKER_HOST="unix://${tempdir}/docker.sock"
+  if eval "${ssh_cmd}"; then
+    pgrep -f "${ssh_cmd}" > "${tempdir}"/remote-docker.pid
+    export DOCKER_HOST="unix://${tempdir}/docker.sock"
+  fi
 }

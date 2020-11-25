@@ -4,8 +4,6 @@
 # -------------------------------------------
 
 remote.kubernetes() {
-  set -e
-
   readonly tempdir="/tmp/remote-kubernetes"
   mkdir -p "${tempdir}"
 
@@ -14,6 +12,7 @@ remote.kubernetes() {
   fi
 
   ssh_cmd="ssh -fNT -L 6443:172.18.0.10:6443 playground.k8s.ardikabs.com"
-  eval "${ssh_cmd}"
-  pgrep -f "${ssh_cmd}" > "${tempdir}/kubernetes-master.pid"
+  if eval "${ssh_cmd}"; then
+    pgrep -f "${ssh_cmd}" > "${tempdir}/kubernetes-master.pid"
+  fi
 }
