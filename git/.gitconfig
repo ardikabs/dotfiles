@@ -1,54 +1,54 @@
 [include]
-  path = ~/.local/git/configs/config.main
+    path = ~/.local/git/configs/config.main
 
 [includeIf "gitdir:/path/to/git/project/**.git"]
-  path = ~/.local/git/configs/config.projectName
+    path = ~/.local/git/configs/config.projectName
 
 [alias]
-  alias = config --get-regexp alias
-  st = status --short --branch
-  ap = add . -p
-  ci = commit -v
-  cim = commit -v -m
-  ca = commit -v --amend
-  cane = commit -v --amend --no-edit
-  co = checkout
-  cob = checkout -B
-  b = branch
-  ba = branch -a
-  br = branch -r
-  bd = branch -D
-  tags = tag -l
-  lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
-  last = log -1 --stat HEAD
-  logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
+    alias = config --get-regexp alias
+    st = status --short --branch
+    ap = add . -p
+    ci = commit -v
+    cim = commit -v -m
+    ca = commit -v --amend
+    cane = commit -v --amend --no-edit
+    co = checkout
+    cob = checkout -B
+    b = branch
+    ba = branch -a
+    br = branch -r
+    bd = branch -D
+    tags = tag -l
+    lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
+    last = log -1 --stat HEAD
+    logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
 
 [core]
-  compression = 5
-  editor = vim
-  excludesfile = ~/.gitignore
-  hooksPath = .githooks
-  trustctime = false
+    compression = 5
+    editor = vim
+    excludesfile = ~/.gitignore
+    hooksPath = .githooks
+    trustctime = false
 
 [push]
-  default = simple
+default = simple
 
 [pull]
-  rebase = true
+    rebase = true
 
 [gpg]
-  program = gpg
+    program = gpg
 
 # Optional
 [commit]
-  gpgsign = true
-  template = ~/.local/git/.gittemplates/commit
+    gpgsign = true
+    template = ~/.local/git/.gittemplates/commit
 
 [url "git@github.com:"]
-  insteadOf = https://github.com/
+    insteadOf = https://github.com/
 
 [url "git@gitlab.com:"]
-  insteadOf = https://gitlab.com/
+    insteadOf = https://gitlab.com/
 
 # For gitlab-ci setup better yet use the following setup
 # [url "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/"]
