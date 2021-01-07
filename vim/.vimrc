@@ -22,14 +22,13 @@ Plug 'tpope/vim-git'
 Plug 'ayu-theme/ayu-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/indentLine'
-Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
-
 
 " -----------------------------------------------------
 " Plugin Configuration
@@ -38,14 +37,20 @@ call plug#end()
 " Plugin:NERDTree {{
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+" }}
+
+" Plugin:vim-airline {{
+let g:airline_theme="durant"
+let g:airline_powerline_fonts=1
 " }}
 
 " Plugin:IndentLine {{
-" let g:indentLine_char_list = ['¦', '┆', '┊']
-let g:indentLine_first_char = '|'
-let g:indentLine_bgcolor_term = 233
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
+"let g:indentLine_char_list = ['¦', '┆', '┊']
+"let g:indentLine_first_char = '|'
+"let g:indentLine_bgcolor_term = 233
+"let g:indentLine_showFirstIndentLevel = 1
+"let g:indentLine_setColors = 0
 " }}
 
 " Plugin:Fzf {{
@@ -85,10 +90,10 @@ nnoremap <silent> <leader>b :FzfBLines<CR>
 nnoremap <silent> <leader>` :FzfMarks<CR>
 nnoremap <silent> <leader>p :FzfCommands<CR>
 nnoremap <silent> <leader>t :FzfFiletypes<CR>
-cnoremap <silent> <C-_> <C-u>:FzfCommands<CR>
 
+nnoremap <silent> <leader>g :FzfGFiles<CR>
+nnoremap <silent> <leader>f :FzfRg!<CR>
 " }}
-
 
 " -----------------------------------------------------
 " VIM Configuration
@@ -179,12 +184,12 @@ map <down> <c-e>
 inoremap jk <Esc>
 
 " Colorscheme
-set t_Co=256
-set termguicolors       " enable true colors support
-let ayucolor="mirage"   " for dark version of theme
-colorscheme ayu
-" set colorcolumn=80,100
-" highlight ColorColumn ctermbg=238 guibg=#23272
+"set t_Co=256
+"set termguicolors       " enable true colors support
+"let ayucolor="mirage"   " for dark version of theme
+"colorscheme ayu
+"set colorcolumn=80,100
+"highlight ColorColumn ctermbg=238 guibg=#23272
 
 " Different tab/space stops
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
