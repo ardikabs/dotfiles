@@ -1,0 +1,6 @@
+
+[includeIf "gitdir:**/kadabra/**"]
+    path = ~/.local/git/.gitusers/kadabra
+
+[includeIf "gitdir:**/moka/**"]
+    path = ~/.local/git/.gitusers/gojek

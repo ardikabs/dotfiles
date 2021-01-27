@@ -1,0 +1,13 @@
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+    insteadOf = https://gitlab.com/
+
+# For gitlab-ci setup better yet use the following setup
+# [url "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/"]
+#   insteadOf = https://gitlab.com/
+#   insteadOf = git://gitlab.com/
+#   insteadOf = ssh://git@gitlab.com/
+#   insteadOf = git@gitlab.com:

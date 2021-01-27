@@ -1,9 +1,17 @@
+[user]
+  name = Ardika Bagus
+  email = me@ardikabs.com
+  signingkey = 14614438DAE713EB
+
+# git user
 [include]
-    path = ~/.local/git/configs/config.main
+    path = ~/.local/git/.gitconfigs/users.gitconfig
 
-[includeIf "gitdir:/path/to/git/project/**.git"]
-    path = ~/.local/git/configs/config.projectName
+# git url
+[include]
+    path = ~/.local/git/.gitconfigs/giturl.gitconfig
 
+# git alias
 [alias]
     alias = config --get-regexp alias
     st = status --short --branch
@@ -23,6 +31,7 @@
     last = log -1 --stat HEAD
     logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
 
+# git default
 [core]
     compression = 5
     editor = vim
@@ -31,7 +40,7 @@
     trustctime = false
 
 [push]
-default = simple
+    default = simple
 
 [pull]
     rebase = true
@@ -39,20 +48,9 @@ default = simple
 [gpg]
     program = gpg
 
-# Optional
 [commit]
     gpgsign = true
     template = ~/.local/git/.gittemplates/commit
 
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-
-[url "git@gitlab.com:"]
-    insteadOf = https://gitlab.com/
-
-# For gitlab-ci setup better yet use the following setup
-# [url "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/"]
-#   insteadOf = https://gitlab.com/
-#   insteadOf = git://gitlab.com/
-#   insteadOf = ssh://git@gitlab.com/
-#   insteadOf = git@gitlab.com:
+[diff "sopsdiffer"]
+    textconv = sops -d
