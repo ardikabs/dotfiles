@@ -1,3 +1,31 @@
+
+.PHONY: sync
+sync: sync-zsh sync-git sync-tmux sync-vim ## Runs sync to synchronize remote dotfiles with local dotfiles
+
+sync-zsh:
+	@cp -Rf zsh/zshrc.d/* ~/.local/zshrc.d/
+	@cp -Rf zsh/.zshrc ~/.zshrc
+	@$(info ******* Successfully synchronize zsh configuration *******)
+	@$(info ******* Please do reload your .zshrc *******)
+
+sync-git:
+	@mkdir -p ~/.local/git/{.gitconfigs,.gittemplates,.gitusers}
+	@cp -Rf git/.gitconfigs/* ~/.local/git/.gitconfigs/
+	@cp -Rf git/.gittemplates/* ~/.local/git/.gittemplates/
+	@cp -Rf git/.gitusers/* ~/.local/git/.gitusers/
+	@cp -Rf git/.gitconfig ~/.gitconfig
+	@cp -Rf git/.gitignore ~/.gitignore
+	@$(info ******* Successfully synchronize git configuration *******)
+
+sync-tmux:
+	@cp -Rf tmux/.tmux.conf ~/.tmux.conf
+	@$(info ******* Successfully synchronize tmux configuration *******)
+
+
+sync-vim:
+	@cp -Rf vim/.vimrc ~/.vimrc
+	@$(info ******* Successfully synchronize vim configuration *******)
+
 .PHONY: test
 test: ## Runs all the tests on the files in the repository.
 	@./test.sh
