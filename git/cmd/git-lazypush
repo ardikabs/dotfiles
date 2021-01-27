@@ -3,11 +3,11 @@
 message=$1
 currentBranch=$(git symbolic-ref --short -q HEAD)
 
-if [ ! -z "$message" ]
+if [ -n "$message" ]
 then
     git add .
-    git commit -m "$message"
-    git push origin $currentBranch
+    git commit -m "${message}"
+    git push origin "${currentBranch}"
 else
     echo -e "\033[1;31mERROR!\033[0m Commit message is not provided"
 fi

@@ -2,10 +2,10 @@
 
 newBranch=$1
 
-if [ ! -z "$newBranch" ]
+if [ -n "${newBranch}" ]
 then
     git stash
-    git checkout -b "$newBranch"
+    git checkout -b "${newBranch}"
     git stash pop
 else
     echo -e "\033[1;31mERROR!\033[0m Branch name is not specified"
