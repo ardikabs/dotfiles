@@ -10,7 +10,7 @@ _hook_kubectl_config_pre() {
   cmd=$(type "${cmd}" 2>/dev/null)
   if [ $? -eq 0 ]; then
     if grep -ow "kubectl" <<< "${cmd}" >/dev/null 2>&1; then
-      if [ "${ctx}" = "ctx" ] && [[ ${KUBECONFIG} =~ \.kubeconfig$ ]]; then
+      if [ "${ctx}" = "ctx" ]; then
         unset KUBECONFIG
         export _HOOK_KUBECTL_CONFIG_MATCH=1
       fi
