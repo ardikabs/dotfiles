@@ -54,3 +54,6 @@
 
 [diff "sopsdiffer"]
     textconv = sops -d
+
+[help]
+    autocorrect = 10
