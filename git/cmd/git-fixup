@@ -1,0 +1,5 @@
+#!/bin/bash
+
+target_commit=${1:-$(git rev-parse HEAD)}
+
+git commit --fixup "$target_commit"
