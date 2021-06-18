@@ -27,6 +27,8 @@
     br = branch -r
     bd = branch -D
     tags = tag -l
+    d = diff
+    dc = diff --cached
     lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
     last = log -1 --stat HEAD
     logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
