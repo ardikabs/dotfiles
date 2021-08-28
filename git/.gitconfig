@@ -32,6 +32,8 @@
     lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
     last = log -1 --stat HEAD
     logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
+    upstream = !git remote | egrep -o '(upstream|origin)' | tail -1
+    head = !git remote show $(git upstream) | awk '/HEAD branch/ {print $NF}'
 
 # git default
 [core]
