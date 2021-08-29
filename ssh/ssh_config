@@ -22,7 +22,7 @@ Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
 
 Host *
     Protocol 2
-    LogLevel INFO
+    LogLevel QUIET
     Compression yes
     ServerAliveInterval 60s
     StrictHostKeyChecking no
