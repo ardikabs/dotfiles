@@ -1,0 +1,19 @@
+#!/bin/bash
+confirm() {
+  branch=$1
+  read -p "git-purge: Are you sure to purge $branch branch? [y/N]" -n 1 -r
+  echo    # (optional) move to a new line
+  if [[ ! $REPLY =~ ^[Yy]$ ]]
+  then
+      [[ "$0" = "${BASH_SOURCE[0]}" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+  fi
+}
+
+target_branch=${1:-}
+if [ -z "$target_branch" ]; then
+  echo >&2 "git-purge: at least 1 argument (branch-name) needed"
+  exit 1
+fi
+
+confirm "\"$target_branch\""
+git branch -d "$target_branch" && git push --delete "$(git upstream)" "$target_branch" 2>/dev/null
