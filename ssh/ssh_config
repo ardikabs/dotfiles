@@ -27,7 +27,7 @@ Host *
     ServerAliveInterval 60s
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
-    PreferredAuthentications publickey
+    PreferredAuthentications publickey,password
 
 Host gitlab.com github.com source.golabs.io
     StrictHostKeyChecking yes
