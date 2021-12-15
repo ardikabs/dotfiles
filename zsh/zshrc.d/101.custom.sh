@@ -26,7 +26,7 @@ ipsec_vpn() {
     -e VPN_PASSWORD="$(totp)" \
     --name="$HOST" \
     ardikabs/strongswan \
-    --ike-proposal aes256-sha1-modp1024
+    --profile ikev2-eap
 }
 
 ipsec_vpn_cleanup() {
