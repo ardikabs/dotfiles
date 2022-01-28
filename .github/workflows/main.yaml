@@ -1,0 +1,19 @@
+name: Main workflow
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install shellcheck
+        run: brew install shellcheck
+
+      - name: Run Test
+        run: ./test.sh

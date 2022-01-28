@@ -13,7 +13,7 @@ if [[ "$(type shellcheck >/dev/null 2>&1; echo $?)" -eq 1 ]]; then
 fi
 
 # find all executables and run `shellcheck`
-for f in $(git ls-files --exclude='*.sh' --exclude="*.bash" --exclude="git/cmd/*" --ignored | sort -u); do
+for f in $(git ls-files --exclude='*.sh' --exclude="*.bash" --exclude="git/cmd/*" --ignored --cached | sort -u); do
 	if file "$f" | grep --quiet shell; then
 		{
 			shellcheck "$f" && echo -e "[\033[1;33mOK\033[0m]: successfully linted $f"
