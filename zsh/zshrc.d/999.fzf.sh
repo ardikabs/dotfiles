@@ -66,7 +66,9 @@ _gr() {
   cut -d$'\t' -f1
 }
 
-# shellcheck disable=SC2034
+# shellcheck disable=SC2034,SC2296
+# ${(q)item} is a special expansion on zsh
+# ref: https://zsh.sourceforge.io/Doc/Release/Expansion.html
 join-lines() {
   local item
   while read -r item; do
@@ -113,5 +115,5 @@ export FZF_CTRL_T_COMMAND="fd ${FD_OPTIONS}"
 export FZF_ALT_C_COMMAND="fd --type d ${FD_OPTIONS}"
 
 
-# shellcheck disable=SC1090
+# shellcheck disable=SC1090,SC1091
 [ -f "${HOME}"/.fzf.zsh ] && source "${HOME}"/.fzf.zsh
