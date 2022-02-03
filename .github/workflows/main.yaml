@@ -2,7 +2,19 @@ name: Main workflow
 
 on:
   pull_request:
+    paths:
+      - 'Makefile'
+      - '**.sh'
+      - '**.bash'
+      - 'git/cmd/*'
   push:
+    branches:
+      - 'master'
+    paths:
+      - 'Makefile'
+      - '**.sh'
+      - '**.bash'
+      - 'git/cmd/*'
 
 jobs:
   test:
