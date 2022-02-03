@@ -2,7 +2,11 @@
 *.log
 *.out
 .DS_Store
+**/.idea
 **/.env
+**/.terraform
+**/.vscode
+
 
 # temporary stuffs
 *.swp
