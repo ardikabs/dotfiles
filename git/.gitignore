@@ -1,17 +1,74 @@
-# general stuffs
+# general directories stuffs
+/.idea
+/.env
+/.terraform
+/.vscode
+dist/
+downloads/
+bin/
+
+# general files
+.DS_Store
 *.log
 *.out
-.DS_Store
-**/.idea
-**/.env
-**/.terraform
-**/.vscode
-
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # temporary stuffs
 *.swp
 
 # buildout stuffs
-bin
 develop-eggs
 .installed.cfg
+
+# python stuffs
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+build/
+develop-eggs/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+*.mo
+*.pot
+instance/
+.webassets-cache
