@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 # -------------------------------------------
-# Amazon Web Service
+# post script to be invoked after else
 # -------------------------------------------
-
-export AWS_SDK_LOAD_CONFIG=1
-export AWS_REGION=ap-southeast-1
