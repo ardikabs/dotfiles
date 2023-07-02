@@ -1,6 +1,8 @@
-
 [includeIf "gitdir:**/kadabra/**"]
-    path = ~/.local/git/.gitusers/kadabra
+path = ~/.local/git/.gitusers/kadabra
 
-[includeIf "gitdir:**/moka/**"]
-    path = ~/.local/git/.gitusers/gojek
+[includeIf "gitdir:**/idnic/**"]
+path = ~/.local/git/.gitusers/kadabra
+
+[includeIf "gitdir:**/tiketcom/**"]
+path = ~/.local/git/.gitusers/tiketcom

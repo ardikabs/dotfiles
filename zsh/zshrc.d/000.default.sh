@@ -15,3 +15,9 @@ export PS_FORMAT="pid,ppid,user,pri,ni,vsz,rss,pcpu,pmem,tty,stat,args"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/git/cmd:$PATH"
+
+# -------------------------------
+# personal environment variables
+# -------------------------------
+
+export PERSONAL_REMOTE_HOST=box.kadabra.ardikabs.com
