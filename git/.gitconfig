@@ -1,63 +1,63 @@
 [user]
-  name = Ardika Bagus
-  email = me@ardikabs.com
-  signingkey = 14614438DAE713EB
+name = Ardika Bagus
+email = me@ardikabs.com
+signingkey = 14614438DAE713EB
 
 # git user
 [include]
-    path = ~/.local/git/.gitconfigs/users.gitconfig
+path = ~/.local/git/.gitconfigs/users.gitconfig
 
 # git url
 [include]
-    path = ~/.local/git/.gitconfigs/giturl.gitconfig
+path = ~/.local/git/.gitconfigs/giturl.gitconfig
 
 # git alias
 [alias]
-    alias = config --get-regexp alias
-    st = status --short --branch
-    ap = add . -p
-    ci = commit -v
-    cim = commit -v -m
-    ca = commit -v --amend
-    cane = commit -v --amend --no-edit
-    co = checkout
-    cob = checkout -B
-    b = branch
-    ba = branch -a
-    br = branch -r
-    bd = branch -D
-    tags = tag -l
-    d = diff
-    dc = diff --cached
-    lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
-    last = log -1 --stat HEAD
-    logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
-    upstream = !git remote | egrep -o '(upstream|origin)' | tail -1
-    head = !git remote show $(git upstream) | awk '/HEAD branch/ {print $NF}'
+alias = config --get-regexp alias
+st = status --short --branch
+ap = add . -p
+ci = commit -s -v
+cim = commit -s -v -m
+ca = commit s- -v --amend
+cane = commit -s -v --amend --no-edit
+co = checkout
+cob = checkout -B
+b = branch
+ba = branch -a
+br = branch -r
+bd = branch -D
+tags = tag -l
+d = diff
+dc = diff --cached
+lg = log -n 10 --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%cr) %C(bold blue)%an%Creset:%Cred%d%Creset %s' --abbrev-commit --date=relative
+last = log -1 --stat HEAD
+logstat = log --stat --pretty=format:'%C(yellow)%h%Creset %Cgreen%s %C(bold blue)(%an)'
+upstream = !git remote | egrep -o '(upstream|origin)' | tail -1
+head = !git remote show $(git upstream) | awk '/HEAD branch/ {print $NF}'
 
 # git default
 [core]
-    compression = 5
-    editor = vim
-    excludesfile = ~/.gitignore
-    hooksPath = .githooks
-    trustctime = false
+compression = 5
+editor = vim
+excludesfile = ~/.gitignore
+hooksPath = .githooks
+trustctime = false
 
 [push]
-    default = simple
+default = simple
 
 [pull]
-    rebase = true
+rebase = true
 
 [gpg]
-    program = gpg
+program = gpg
 
 [commit]
-    gpgsign = true
-    template = ~/.local/git/.gittemplates/commit
+gpgsign = true
+template = ~/.local/git/.gittemplates/commit
 
 [diff "sopsdiffer"]
-    textconv = sops -d
+textconv = sops -d
 
 [help]
-    autocorrect = 10
+autocorrect = 10
