@@ -3,6 +3,3 @@ path = ~/.local/git/.gitusers/kadabra
 
 [includeIf "gitdir:**/idnic/**"]
 path = ~/.local/git/.gitusers/kadabra
-
-[includeIf "gitdir:**/tiketcom/**"]
-path = ~/.local/git/.gitusers/tiketcom
