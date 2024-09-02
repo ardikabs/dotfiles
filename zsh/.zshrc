@@ -1,3 +1,4 @@
+export PATH=$PATH:/opt/homebrew/bin
 export TERM="xterm-256color"
 export ZSH="$HOME/.oh-my-zsh"
 export GPG_TTY=$(tty)
