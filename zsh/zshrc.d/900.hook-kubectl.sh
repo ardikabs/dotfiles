@@ -9,7 +9,7 @@ _hook_kubectl_config_pre() {
 
   cmd=$(type "${cmd}" 2>/dev/null)
   if [ $? -eq 0 ]; then
-    if grep -ow "kubectl" <<< "${cmd}" >/dev/null 2>&1; then
+    if grep -ow "kubectl" <<<"${cmd}" >/dev/null 2>&1; then
       if [ "${ctx}" = "ctx" ]; then
         unset KUBECONFIG
         export _HOOK_KUBECTL_CONFIG_MATCH=1
@@ -23,7 +23,8 @@ _hook_kubectl_config_post() {
   if [ "${_HOOK_KUBECTL_CONFIG_MATCH}" -eq 1 ]; then
     _ctx_kubeconfig=/tmp/$(kubectl config current-context | tr -s ' ').kubeconfig
 
-    kubectl config view --raw > $_ctx_kubeconfig
+    kubectl config view --raw >$_ctx_kubeconfig
+    chmod 600 $_ctx_kubeconfig
     export KUBECONFIG=${_ctx_kubeconfig}
 
     export _HOOK_KUBECTL_CONFIG_MATCH=0
