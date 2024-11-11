@@ -1,9 +1,7 @@
-export PATH=$PATH:/opt/homebrew/bin
+export GPG_TTY=$(tty)
 export TERM="xterm-256color"
 export ZSH="$HOME/.oh-my-zsh"
-export GPG_TTY=$(tty)
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -12,6 +10,12 @@ COMPLETION_WAITING_DOTS="true"
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+if [[ "$(uname)" == "Darwin" ]]; then
+	export PATH=$PATH:/opt/homebrew/bin:$HOME/Library/Python/3.9/bin
+elif [[ "$(uname)" == "Linux" ]]; then
+	source $HOME/.atuin/bin/env
+fi
 
 plugins=(
 	git
